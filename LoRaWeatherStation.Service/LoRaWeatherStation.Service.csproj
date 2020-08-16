@@ -6,6 +6,21 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\LoRaWeatherStation.DataModel\LoRaWeatherStation.DataModel.csproj" />
+      <ProjectReference Include="..\WeatherLib\WeatherLib.Dwd.OpenData\WeatherLib.Dwd.OpenData.csproj" />
+      <ProjectReference Include="..\WeatherLib\WeatherLib\WeatherLib.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.7">
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        <PrivateAssets>all</PrivateAssets>
+      </PackageReference>
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.7">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.7" />
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.4" />
+    </ItemGroup>
 </Project>
