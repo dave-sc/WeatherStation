@@ -1,0 +1,4 @@
+[submodule "WeatherLib"]
+	path = WeatherLib
+	url = https://github.com/dave-sc/WeatherLib
+	branch = master
