@@ -38,6 +38,8 @@ namespace LoRaWeatherStation.Service
             }            
             
             services.AddControllers();
+            services.AddSingleton<SensorRecorder>();
+            services.AddHostedService(provider => provider.GetService<SensorRecorder>());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -8,7 +8,8 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "ASPNETCORE_URLS": "http://localhost:5000",
-        "LRRC_USE_IN_MEMORY_DB": "false"
+        "LRRC_USE_IN_MEMORY_DB": "false",
+        "LRRC_LORA_DEVICE": ""
       }
     }
   }

@@ -7,6 +7,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\LoRaWeatherStation.DataModel\LoRaWeatherStation.DataModel.csproj" />
+      <ProjectReference Include="..\LoRaWeatherStation.Utils\LoRaWeatherStation.Utils.csproj" />
       <ProjectReference Include="..\WeatherLib\WeatherLib.Dwd.OpenData\WeatherLib.Dwd.OpenData.csproj" />
       <ProjectReference Include="..\WeatherLib\WeatherLib\WeatherLib.csproj" />
     </ItemGroup>
@@ -22,5 +23,6 @@
       </PackageReference>
       <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.7" />
       <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.4" />
+      <PackageReference Include="System.IO.Ports" Version="4.7.0" />
     </ItemGroup>
 </Project>
