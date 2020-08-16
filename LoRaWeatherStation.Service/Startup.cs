@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WeatherLib;
+using WeatherLib.Dwd.OpenData;
 
 namespace LoRaWeatherStation.Service
 {
@@ -38,8 +40,12 @@ namespace LoRaWeatherStation.Service
             }            
             
             services.AddControllers();
+
+            services.AddTransient<IWeatherDataProviderFactory, DwdWeatherDataProviderFactory>();
             services.AddSingleton<SensorRecorder>();
             services.AddHostedService(provider => provider.GetService<SensorRecorder>());
+            services.AddSingleton<ForecastLoader>();
+            services.AddHostedService(provider => provider.GetService<ForecastLoader>());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -17,12 +17,14 @@ namespace LoRaWeatherStation.Service.Controllers
         private readonly ILogger<LocationsController> _logger;
         private readonly IHostApplicationLifetime _applicationLifetime;
         private readonly WeatherStationContext _dbContext;
+        private readonly ForecastLoader _forecastLoader;
 
-        public LocationsController(ILogger<LocationsController> logger, IHostApplicationLifetime applicationLifetime, WeatherStationContext dbContext)
+        public LocationsController(ILogger<LocationsController> logger, IHostApplicationLifetime applicationLifetime, WeatherStationContext dbContext, ForecastLoader forecastLoader)
         {
             _logger = logger;
             _applicationLifetime = applicationLifetime;
             _dbContext = dbContext;
+            _forecastLoader = forecastLoader;
         }
         
         [HttpGet]
@@ -92,6 +94,7 @@ namespace LoRaWeatherStation.Service.Controllers
             _dbContext.UpdateRange(newLocations.Where(l => oldIds.Contains(l.Id)));
             _dbContext.AddRange(newLocations.Where(l => !oldIds.Contains(l.Id)));
             await _dbContext.SaveChangesAsync();
+            _ = _forecastLoader.UpdateForecastsAsync(_applicationLifetime.ApplicationStopping);
 
             return Ok(await _dbContext.Locations.ToListAsync());
         }
