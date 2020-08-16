@@ -56,8 +56,6 @@ namespace LoRaWeatherStation.Service
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
-
             app.UseRouting();
 
             app.UseAuthorization();
