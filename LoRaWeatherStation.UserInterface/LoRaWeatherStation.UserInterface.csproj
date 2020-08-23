@@ -18,4 +18,7 @@
     <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.0-preview3" />
     <PackageReference Include="Avalonia.Diagnostics" Version="0.10.0-preview3" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LoRaWeatherStation.Utils.Ui\LoRaWeatherStation.Utils.Ui.csproj" />
+  </ItemGroup>
 </Project>
