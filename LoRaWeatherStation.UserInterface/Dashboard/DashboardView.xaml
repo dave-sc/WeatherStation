@@ -15,6 +15,11 @@
             <Setter Property="HorizontalAlignment" Value="Right" />
             <Setter Property="VerticalAlignment" Value="Bottom" />
         </Style>
+        <Style Selector="controls|WeatherImage">
+            <Setter Property="Margin" Value="9" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
     </UserControl.Styles>
     <Grid Margin="6" ColumnDefinitions="* * * * * * * * * *" RowDefinitions="* * * * * *">
         <dashboard:WidgetContainer Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="4">
@@ -34,6 +39,17 @@
         <dashboard:WidgetContainer Grid.Row="0" Grid.Column="7" Grid.RowSpan="2" Grid.ColumnSpan="3"
                                    Header="Küche" HeaderIcon="{StaticResource Material.PotMix}">
             <controls:ColoredValueDisplay Classes="temperature" Value="25.1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        </dashboard:WidgetContainer>
+        <dashboard:WidgetContainer Grid.Row="2" Grid.Column="4" Grid.RowSpan="4" Grid.ColumnSpan="6"
+                                   Header="Wetter" HeaderIcon="{StaticResource Material.MapMarkerRadius}">
+            <Grid RowDefinitions="4* 9*">
+                <Grid Row="0" ColumnDefinitions="8* 5* 6*" Margin="0,-15,0,0">
+                    <controls:ColoredValueDisplay Classes="temperature" Grid.Column="0" VerticalAlignment="Bottom" Value="28.9" />
+                    <controls:ColoredValueDisplay Classes="humidity" Grid.Column="1" VerticalAlignment="Bottom" Value="57" />
+                    <controls:WeatherImage Grid.Column="2" Weather="CloudyLight" />
+                </Grid>
+                <controls:BasicForecastGraph Grid.Row="1" Forecast="{x:Static dashboard:DashboardViewModel.ExampleForecast}" />
+            </Grid>
         </dashboard:WidgetContainer>
     </Grid>
 </UserControl>
