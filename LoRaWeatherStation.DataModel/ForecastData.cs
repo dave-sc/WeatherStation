@@ -16,8 +16,11 @@ namespace LoRaWeatherStation.DataModel
         
         public double Temperature { get; set; }
         public double TemperatureError { get; set; }
+        public double Precipitation { get; set; }
+        public double PrecipitationProbability { get; set; }
         public double WindSpeed { get; set; }
         public double WindSpeedError { get; set; }
+        public double WindDirection { get; set; }
         public double Pressure { get; set; }
         public double PressureError { get; set; }
         public double CloudCover { get; set; }
