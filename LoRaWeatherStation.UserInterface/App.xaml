@@ -70,6 +70,11 @@
                 </GradientStops>
             </Setter>
         </Style>
+        
+        <Style Selector="controls|WeatherImage">
+            <Setter Property="Height" Value="90" />
+            <Setter Property="Width" Value="90" />
+        </Style>
     </Application.Styles>
     
     <Application.Resources>

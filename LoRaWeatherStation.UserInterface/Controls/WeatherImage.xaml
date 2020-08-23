@@ -1,0 +1,137 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LoRaWeatherStation.UserInterface.Controls.WeatherImage">
+    <UserControl.Styles>
+        <Style Selector="Image.None">
+            <Setter Property="Source" Value="{StaticResource WeatherIcons.DaySunnyOvercast}" />
+        </Style>
+        <Style Selector="Image.Clear">
+            <Setter Property="Source" Value="{StaticResource WeatherIcons.DaySunnyOvercast}" />
+        </Style>
+        <Style Selector="Image.CloudyLight">
+            <Setter Property="Source" Value="{StaticResource WeatherIcons.DaySunnyOvercast}" />
+        </Style>
+        <Style Selector="Image.CloudyMedium">
+            <Setter Property="Source" Value="{StaticResource WeatherIcons.DaySunnyOvercast}" />
+        </Style>
+        <Style Selector="Image.CloudyVery">
+            <Setter Property="Source" Value="{StaticResource WeatherIcons.DaySunnyOvercast}" />
+        </Style>
+        <Style Selector="Image.Smoke">
+            <Setter Property="Source" Value="{StaticResource WeatherIcons.DaySunnyOvercast}" />
+        </Style>
+        <Style Selector="Image.Haze">
+            <Setter Property="Source" Value="{StaticResource WeatherIcons.DaySunnyOvercast}" />
+        </Style>
+        <Style Selector="Image.Dust">
+            <Setter Property="Source" Value="{StaticResource WeatherIcons.DaySunnyOvercast}" />
+        </Style>
+        <Style Selector="Image.Fog">
+            <Setter Property="Source" Value="{StaticResource WeatherIcons.DaySunnyOvercast}" />
+        </Style>
+        <Style Selector="Image.FrostFog">
+            <Setter Property="Source" Value="{StaticResource WeatherIcons.DaySunnyOvercast}" />
+        </Style>
+        <Style Selector="Image.LightIntermittentDrizzle">
+            <Setter Property="Source" Value="{StaticResource WeatherIcons.DaySunnyOvercast}" />
+        </Style>
+        <Style Selector="Image.LightDrizzle">
+            <Setter Property="Source" Value="{StaticResource WeatherIcons.DaySunnyOvercast}" />
+        </Style>
+        <Style Selector="Image.IntermittentDrizzle">
+            <Setter Property="Source" Value="{StaticResource WeatherIcons.DaySunnyOvercast}" />
+        </Style>
+        <Style Selector="Image.Drizzle">
+            <Setter Property="Source" Value="{StaticResource WeatherIcons.DaySunnyOvercast}" />
+        </Style>
+        <Style Selector="Image.FreezingLightDrizzle">
+            <Setter Property="Source" Value="{StaticResource WeatherIcons.DaySunnyOvercast}" />
+        </Style>
+        <Style Selector="Image.FreezingDrizzle">
+            <Setter Property="Source" Value="{StaticResource WeatherIcons.DaySunnyOvercast}" />
+        </Style>
+        <Style Selector="Image.IntermittentLightRain">
+            <Setter Property="Source" Value="{StaticResource WeatherIcons.DaySunnyOvercast}" />
+        </Style>
+        <Style Selector="Image.LightRain">
+            <Setter Property="Source" Value="{StaticResource WeatherIcons.DaySunnyOvercast}" />
+        </Style>
+        <Style Selector="Image.IntermittentRain">
+            <Setter Property="Source" Value="{StaticResource WeatherIcons.DaySunnyOvercast}" />
+        </Style>
+        <Style Selector="Image.Rain">
+            <Setter Property="Source" Value="{StaticResource WeatherIcons.DaySunnyOvercast}" />
+        </Style>
+        <Style Selector="Image.IntermittentHeavyRain">
+            <Setter Property="Source" Value="{StaticResource WeatherIcons.DaySunnyOvercast}" />
+        </Style>
+        <Style Selector="Image.HeavyRain">
+            <Setter Property="Source" Value="{StaticResource WeatherIcons.DaySunnyOvercast}" />
+        </Style>
+        <Style Selector="Image.FreezingLightRain">
+            <Setter Property="Source" Value="{StaticResource WeatherIcons.DaySunnyOvercast}" />
+        </Style>
+        <Style Selector="Image.FreezingRain">
+            <Setter Property="Source" Value="{StaticResource WeatherIcons.DaySunnyOvercast}" />
+        </Style>
+        <Style Selector="Image.LightSleet">
+            <Setter Property="Source" Value="{StaticResource WeatherIcons.DaySunnyOvercast}" />
+        </Style>
+        <Style Selector="Image.Sleet">
+            <Setter Property="Source" Value="{StaticResource WeatherIcons.DaySunnyOvercast}" />
+        </Style>
+        <Style Selector="Image.IntermittentLightSnow">
+            <Setter Property="Source" Value="{StaticResource WeatherIcons.DaySunnyOvercast}" />
+        </Style>
+        <Style Selector="Image.LightSnow">
+            <Setter Property="Source" Value="{StaticResource WeatherIcons.DaySunnyOvercast}" />
+        </Style>
+        <Style Selector="Image.IntermittentSnow">
+            <Setter Property="Source" Value="{StaticResource WeatherIcons.DaySunnyOvercast}" />
+        </Style>
+        <Style Selector="Image.Snow">
+            <Setter Property="Source" Value="{StaticResource WeatherIcons.DaySunnyOvercast}" />
+        </Style>
+        <Style Selector="Image.Icy">
+            <Setter Property="Source" Value="{StaticResource WeatherIcons.DaySunnyOvercast}" />
+        </Style>
+        <Style Selector="Image.LightHail">
+            <Setter Property="Source" Value="{StaticResource WeatherIcons.DaySunnyOvercast}" />
+        </Style>
+        <Style Selector="Image.Hail">
+            <Setter Property="Source" Value="{StaticResource WeatherIcons.DaySunnyOvercast}" />
+        </Style>
+        <Style Selector="Image.DustWhirl">
+            <Setter Property="Source" Value="{StaticResource WeatherIcons.DaySunnyOvercast}" />
+        </Style>
+        <Style Selector="Image.SnowDrifts">
+            <Setter Property="Source" Value="{StaticResource WeatherIcons.DaySunnyOvercast}" />
+        </Style>
+        <Style Selector="Image.Storm">
+            <Setter Property="Source" Value="{StaticResource WeatherIcons.DaySunnyOvercast}" />
+        </Style>
+        <Style Selector="Image.DustStorm">
+            <Setter Property="Source" Value="{StaticResource WeatherIcons.DaySunnyOvercast}" />
+        </Style>
+        <Style Selector="Image.SevereDustStorm">
+            <Setter Property="Source" Value="{StaticResource WeatherIcons.DaySunnyOvercast}" />
+        </Style>
+        <Style Selector="Image.Thunder">
+            <Setter Property="Source" Value="{StaticResource WeatherIcons.DaySunnyOvercast}" />
+        </Style>
+        <Style Selector="Image.ThunderStorm">
+            <Setter Property="Source" Value="{StaticResource WeatherIcons.DaySunnyOvercast}" />
+        </Style>
+        <Style Selector="Image.HeavyThunderStorm">
+            <Setter Property="Source" Value="{StaticResource WeatherIcons.DaySunnyOvercast}" />
+        </Style>
+        <Style Selector="Image.ThunderStormHail">
+            <Setter Property="Source" Value="{StaticResource WeatherIcons.DaySunnyOvercast}" />
+        </Style>
+        <Style Selector="Image.HeavyThunderStormHail">
+            <Setter Property="Source" Value="{StaticResource WeatherIcons.DaySunnyOvercast}" />
+        </Style>
+    </UserControl.Styles>
+    
+    <Image x:Name="Image" Stretch="Uniform" />
+</UserControl>
