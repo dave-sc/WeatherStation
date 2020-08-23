@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.0</TargetFramework>
+        <RootNamespace>LoRaWeatherStation.Utils</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Avalonia" Version="0.10.0-preview3" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\LoRaWeatherStation.Utils\LoRaWeatherStation.Utils.csproj" />
+    </ItemGroup>
+
+</Project>
