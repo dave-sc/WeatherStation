@@ -6,7 +6,11 @@ using System.Reactive.Linq;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
+using DynamicData;
 using LoRaWeatherStation.DataModel;
+using LoRaWeatherStation.UserInterface.Converters;
+using LoRaWeatherStation.UserInterface.OxyPlotExtensions;
+using LoRaWeatherStation.Utils.Reactive;
 using OxyPlot;
 using OxyPlot.Avalonia;
 using ReactiveUI;
@@ -28,31 +32,64 @@ namespace LoRaWeatherStation.UserInterface.Controls
             this.WhenActivated(disposables =>
             {
                 var forecast = this.WhenAnyValue(x => x.Forecast)
-                    .Select(x => x.OrderBy(y => y.Time).ToArray())
-                    .Select(x => x.Where(y => y.Time <= (x.FirstOrDefault()?.Time.Date ?? DateTime.MinValue.Date).AddDays(1)).ToArray());
+                    .Select(data => data.OrderBy(y => y.Time).ToArray())
+                    .Select(data => data.Where(y => y.Time <= (data.FirstOrDefault()?.Time.Date ?? DateTime.MinValue.Date).AddDays(1)).ToArray());
 
-                forecast.Select(x => x.Select(y => new DataPoint(OxyPlot.Axes.DateTimeAxis.ToDouble(y.Time), y.Temperature)))
+                forecast
+                    .Select(data => data.Select(item => new DataPoint(OxyPlot.Axes.DateTimeAxis.ToDouble(item.Time), item.Temperature)))
                     .BindTo(TempSeries, x => x.Items)
                     .DisposeWith(disposables);
-                forecast.Select(x => x.Max(y => y.Temperature))
-                    .Select(x => Math.Ceiling(x / 5) * 5)
-                    .BindTo(TempAxis, x => x.Maximum)
+                
+                forecast
+                    .Select(data => data.Select(item => new DataPoint(OxyPlot.Axes.DateTimeAxis.ToDouble(item.Time), item.Precipitation)))
+                    .BindTo(RainSeries, x => x.Items)
                     .DisposeWith(disposables);
-                forecast.Select(x => x.Min(y => y.Temperature))
-                    .Select(x => Math.Floor(x / 5) * 5)
+
+                forecast
+                    .Select(data => data
+                        .Where(item => item.Time.TimeOfDay.TotalHours % 3 == 0)
+                        .Select(item => new ImageAnnotation()
+                        {
+                            Source = WeatherTypeToImageConverter.Convert(item.Weather),
+                            // Warning: OxyPlot does not properly position ImageAnnotations that have one coordinate of type Data when the other one isn't. So this does not work: 
+                            // X = new PlotLength(OxyPlot.Axes.DateTimeAxis.ToDouble(y.Time), PlotLengthUnit.Data),
+                            // so calculate the X-coordinate locally instead, which is relatively cheap as the data is already ordered and an array.
+                            X = new OxyPlotExtensions.PlotLength((item.Time - data.First().Time).TotalHours / (data.Last().Time - data.First().Time).TotalHours, PlotLengthUnit.RelativeToPlotArea),
+                            Y = new OxyPlotExtensions.PlotLength(12, PlotLengthUnit.ScreenUnits),
+                            Width = new OxyPlotExtensions.PlotLength(24, PlotLengthUnit.ScreenUnits),
+                        })
+                    )
+                    .Subscribe(annotations =>
+                    {
+                        // Annotations is readonly
+                        Plot.Annotations.Clear();
+                        Plot.Annotations.AddRange(annotations);
+                    })
+                    .DisposeWith(disposables);
+
+                var tempRange = forecast
+                    .Select(data => (min: data.Min(item => item.Temperature), max: data.Max(item => item.Temperature)))
+                    .Select((minTemp, maxTemp) => (min: Math.Floor(minTemp / 5) * 5, max: Math.Ceiling(maxTemp / 5) * 5));
+                
+                tempRange
+                    .Select(range => range.min)
                     .BindTo(TempAxis, x => x.Minimum)
                     .DisposeWith(disposables);
                 
-                forecast.Select(x => x.Select(y => new DataPoint(OxyPlot.Axes.DateTimeAxis.ToDouble(y.Time), y.Precipitation)))
-                    .BindTo(RainSeries, x => x.Items)
+                tempRange
+                    .Select(range => range.max)
+                    .BindTo(TempAxis, x => x.Maximum)
                     .DisposeWith(disposables);
                 
-                var timeRange = forecast.Select(x => x.FirstOrDefault()?.Time.Date ?? DateTime.MinValue.Date)
+                var timeRange = forecast
+                    .Select(data => data.FirstOrDefault()?.Time.Date ?? DateTime.MinValue.Date)
                     .Select(x => (min: x, max: x.AddDays(1)));
-                timeRange.Select(x => x.min)
+                
+                timeRange
+                    .Select(range => range.min)
                     .BindTo(TimeAxis, x => x.FirstDateTime)
                     .DisposeWith(disposables);
-                timeRange.Select(x => x.max)
+                timeRange.Select(range => range.max)
                     .BindTo(TimeAxis, x => x.LastDateTime)
                     .DisposeWith(disposables);
             });

@@ -4,6 +4,7 @@ using System.Reactive.Linq;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
+using LoRaWeatherStation.UserInterface.Converters;
 using ReactiveUI;
 using WeatherLib;
 
@@ -19,8 +20,8 @@ namespace LoRaWeatherStation.UserInterface.Controls
             this.WhenActivated(disposables =>
             {
                 this.WhenAnyValue(x => x.Weather)
-                    .Select(x => new Classes(Enum.GetName(typeof(WeatherType), x)))
-                    .BindTo(ImageControl, x => x.Classes)
+                    .Select(WeatherTypeToImageConverter.Convert)
+                    .BindTo(ImageControl, x => x.Source)
                     .DisposeWith(disposables);
             });
         }
