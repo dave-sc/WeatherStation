@@ -1,4 +1,23 @@
 <Window x:Class="LoRaWeatherStation.UserInterface.MainWindow"
         xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:reactiveUi="http://reactiveui.net"
+        Title="Weather Station"
+        SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen" SystemDecorations="BorderOnly" CanResize="False">
+    <Viewbox Width="534" Height="300">
+        <SplitView x:Name="SplitView" Width="960" Height="540" CompactPaneLength="72" 
+                   DisplayMode="CompactOverlay" UseLightDismissOverlayMode="True" PanePlacement="Right">
+            <SplitView.Pane>
+                <DockPanel>
+                    <StackPanel>
+                        <ListBoxItem>
+                            <Image Width="48" Height="48" HorizontalAlignment="Center"
+                                   Source="{StaticResource Material.WeatherPartlyCloudy}"/>
+                        </ListBoxItem>
+                    </StackPanel>
+                </DockPanel>
+            </SplitView.Pane>
+            <reactiveUi:RoutedViewHost x:Name="ViewHost" />
+        </SplitView>
+    </Viewbox>
 </Window>

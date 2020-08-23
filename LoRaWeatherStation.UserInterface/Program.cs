@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Reflection;
 using Avalonia;
 using Avalonia.ReactiveUI;
+using ReactiveUI;
+using Splat;
 
 namespace LoRaWeatherStation.UserInterface
 {
@@ -14,10 +17,14 @@ namespace LoRaWeatherStation.UserInterface
                 .StartWithClassicDesktopLifetime(args);
 
         // Avalonia configuration, don't remove; also used by visual designer.
-        public static AppBuilder BuildAvaloniaApp() =>
-            AppBuilder.Configure<App>()
+        public static AppBuilder BuildAvaloniaApp()
+        {
+            Locator.CurrentMutable.RegisterViewsForViewModels(Assembly.GetExecutingAssembly());
+            
+            return AppBuilder.Configure<App>()
                 .UsePlatformDetect()
                 .LogToDebug()
                 .UseReactiveUI();
+        }
     }
 }
