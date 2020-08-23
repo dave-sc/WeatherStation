@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoRaWeatherStation.DataMode
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoRaWeatherStation.Utils", "LoRaWeatherStation.Utils\LoRaWeatherStation.Utils.csproj", "{F71C028D-9016-403B-A539-41B380D218FC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoRaWeatherStation.UserInterface", "LoRaWeatherStation.UserInterface\LoRaWeatherStation.UserInterface.csproj", "{CA4528F0-6DE0-49D8-BE45-BD97964D3103}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +40,10 @@ Global
 		{F71C028D-9016-403B-A539-41B380D218FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F71C028D-9016-403B-A539-41B380D218FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F71C028D-9016-403B-A539-41B380D218FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA4528F0-6DE0-49D8-BE45-BD97964D3103}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA4528F0-6DE0-49D8-BE45-BD97964D3103}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA4528F0-6DE0-49D8-BE45-BD97964D3103}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA4528F0-6DE0-49D8-BE45-BD97964D3103}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{5F36687D-FDCB-479B-B36C-8056E287B4AC} = {DD834188-B2A2-418A-9807-B004ACCB6408}
