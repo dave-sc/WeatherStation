@@ -10,10 +10,30 @@
         <Style Selector="dashboard|WidgetContainer">
             <Setter Property="Margin" Value="9" />
         </Style>
+        <Style Selector="controls|ColoredValueDisplay">
+            <Setter Property="Margin" Value="9" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="VerticalAlignment" Value="Bottom" />
+        </Style>
     </UserControl.Styles>
     <Grid Margin="6" ColumnDefinitions="* * * * * * * * * *" RowDefinitions="* * * * * *">
         <dashboard:WidgetContainer Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="4">
             <controls:ClockControl x:Name="Clock" />
+        </dashboard:WidgetContainer>
+        <dashboard:WidgetContainer Grid.Row="4" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="4"
+                                   Header="Wohnzimmer" HeaderIcon="{StaticResource Material.Sofa}">
+            <Grid ColumnDefinitions="5* 3*" VerticalAlignment="Center">
+                <controls:ColoredValueDisplay Classes="temperature" Grid.Column="0" VerticalAlignment="Bottom" Value="25.7" />
+                <controls:ColoredValueDisplay Classes="humidity" Grid.Column="1" VerticalAlignment="Bottom"  Value="40" />
+            </Grid>
+        </dashboard:WidgetContainer>
+        <dashboard:WidgetContainer Grid.Row="0" Grid.Column="4" Grid.RowSpan="2" Grid.ColumnSpan="3"
+                                   Header="Schlafzimmer" HeaderIcon="{StaticResource Material.BedEmpty}">
+            <controls:ColoredValueDisplay Classes="temperature" Value="23.4" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        </dashboard:WidgetContainer>
+        <dashboard:WidgetContainer Grid.Row="0" Grid.Column="7" Grid.RowSpan="2" Grid.ColumnSpan="3"
+                                   Header="Küche" HeaderIcon="{StaticResource Material.PotMix}">
+            <controls:ColoredValueDisplay Classes="temperature" Value="25.1" HorizontalAlignment="Center" VerticalAlignment="Center" />
         </dashboard:WidgetContainer>
     </Grid>
 </UserControl>
