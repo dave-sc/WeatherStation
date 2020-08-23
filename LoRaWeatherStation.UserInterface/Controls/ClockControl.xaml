@@ -1,0 +1,26 @@
+<UserControl xmlns="https://github.com/avaloniaui" Name="control"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="100" d:DesignHeight="100"
+             x:Class="LoRaWeatherStation.UserInterface.Controls.ClockControl">
+    <Viewbox>
+        <Grid Width="175" Height="175">
+            <Grid x:Name="SecondsRing">
+                <Grid.RenderTransform>
+                    <RotateTransform />
+                </Grid.RenderTransform>
+                
+                <Ellipse Margin="4" StrokeThickness="1.75" Stroke="{Binding #control.Foreground}" />
+                <Ellipse Margin="0" Width="10" Height="10" Fill="{Binding #control.Foreground}" HorizontalAlignment="Center" VerticalAlignment="Top" />
+            </Grid>
+        
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock x:Name="TimeText" HorizontalAlignment="Center"
+                           FontSize="52" Height="52" FontWeight="Light" />
+                <TextBlock x:Name="DateText" HorizontalAlignment="Center"
+                           FontSize="18" FontWeight="Normal"/>
+            </StackPanel>
+        </Grid>
+    </Viewbox>
+</UserControl>
