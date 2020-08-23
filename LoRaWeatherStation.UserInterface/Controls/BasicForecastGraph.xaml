@@ -1,0 +1,45 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:oxyplot="http://oxyplot.org/avalonia"
+             x:Class="LoRaWeatherStation.UserInterface.Controls.BasicForecastGraph">
+    <UserControl.Styles>
+        <Style Selector="oxyplot|Plot">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="PlotAreaBackground" Value="{StaticResource SystemControlBackgroundAltMediumBrush}" />
+            <Setter Property="PlotAreaBorderThickness" Value="2" />
+            <Setter Property="PlotMargins" Value="30,0,10,30" />
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="DefaultFontSize" Value="24" />
+        </Style>
+        <Style Selector="oxyplot|LinearAxis">
+            <Setter Property="MajorGridlineStyle" Value="None" />
+            <Setter Property="MajorGridlineThickness" Value="2" />
+            <Setter Property="MajorTickSize" Value="7" />
+            <Setter Property="MinorGridlineStyle" Value="None" />
+            <Setter Property="MinorGridlineThickness" Value="0" />
+            <Setter Property="MinorTickSize" Value="0" />
+            <Setter Property="TickStyle" Value="Crossing" />
+        </Style>
+        <Style Selector="oxyplot|LinearAxis[Position=Bottom]">
+            <Setter Property="AxisTickToLabelDistance" Value="0" />
+        </Style>
+        <Style Selector="oxyplot|LinearAxis[Position=Left]">
+            <Setter Property="AxisTickToLabelDistance" Value="5" />
+        </Style>
+        <Style Selector="oxyplot|LinearAxis[Position=None]">
+            <Setter Property="TickStyle" Value="None" />
+        </Style>
+    </UserControl.Styles>
+    <oxyplot:Plot x:Name="Plot" IsHitTestVisible="False">
+        <oxyplot:Plot.Axes>
+            <oxyplot:LinearAxis x:Name="TempAxis" Key="Temp" MajorStep="5" Position="Left" MajorGridlineStyle="Solid" />
+            <oxyplot:LinearAxis x:Name="RainAxis" Key="Rain" Minimum="0" Maximum="10" Position="None" />
+            <oxyplot:LinearAxis x:Name="Test" Key="Test" Minimum="0" Maximum="1" Position="None" />
+            <oxyplot:DateTimeAxis x:Name="TimeAxis" Key="Time" MajorStep="0.125" MinorStep="0.0416666666666666666666666666" StringFormat="HH" Position="Bottom" />
+        </oxyplot:Plot.Axes>
+        <oxyplot:Plot.Series>
+            <oxyplot:LineSeries x:Name="TempSeries" YAxisKey="Temp" Color="IndianRed" />
+            <oxyplot:LineSeries x:Name="RainSeries" YAxisKey="Rain" Color="LightBlue" />
+        </oxyplot:Plot.Series>
+    </oxyplot:Plot>
+</UserControl>

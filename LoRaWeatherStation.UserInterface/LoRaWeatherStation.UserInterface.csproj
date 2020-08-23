@@ -17,8 +17,10 @@
     <PackageReference Include="Avalonia.Desktop" Version="0.10.0-preview3" />
     <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.0-preview3" />
     <PackageReference Include="Avalonia.Diagnostics" Version="0.10.0-preview3" />
+    <PackageReference Include="OxyPlot.Avalonia" Version="2.1.0-20200725.1" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LoRaWeatherStation.DataModel\LoRaWeatherStation.DataModel.csproj" />
     <ProjectReference Include="..\LoRaWeatherStation.Utils.Ui\LoRaWeatherStation.Utils.Ui.csproj" />
     <ProjectReference Include="..\WeatherLib\WeatherLib\WeatherLib.csproj" />
   </ItemGroup>
