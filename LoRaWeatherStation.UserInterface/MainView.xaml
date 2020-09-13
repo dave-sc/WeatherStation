@@ -1,0 +1,27 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:reactiveUi="http://reactiveui.net"
+             x:Class="LoRaWeatherStation.UserInterface.MainView">
+    <SplitView x:Name="SplitView" Width="960" Height="540" CompactPaneLength="72" 
+               DisplayMode="CompactOverlay" UseLightDismissOverlayMode="True" PanePlacement="Right">
+        <SplitView.Pane>
+            <DockPanel>
+                <ListBoxItem DockPanel.Dock="Bottom">
+                    <Image Width="48" Height="48" HorizontalAlignment="Center"
+                           Source="{StaticResource MaterialDesign.Settings}"/>
+                </ListBoxItem>
+                <StackPanel>
+                    <ListBoxItem>
+                        <Image Width="48" Height="48" HorizontalAlignment="Center"
+                               Source="{StaticResource Material.WeatherPartlyCloudy}"/>
+                    </ListBoxItem>
+                    <ListBoxItem>
+                        <Image Width="48" Height="48" HorizontalAlignment="Center"
+                               Source="{StaticResource Material.ChartBellCurve}"/>
+                    </ListBoxItem>
+                </StackPanel>
+            </DockPanel>
+        </SplitView.Pane>
+        <reactiveUi:RoutedViewHost x:Name="ViewHost" />
+    </SplitView>
+</UserControl>

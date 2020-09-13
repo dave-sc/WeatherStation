@@ -9,9 +9,9 @@ using ReactiveUI;
 
 namespace LoRaWeatherStation.UserInterface
 {
-    public class MainWindowViewModel : ViewModelBase, IScreen
+    public class MainViewModel : ViewModelBase, IScreen
     {
-        public MainWindowViewModel()
+        public MainViewModel()
             : base(null)
         {
             Pages = new ObservableCollection<IRoutableViewModel>()
