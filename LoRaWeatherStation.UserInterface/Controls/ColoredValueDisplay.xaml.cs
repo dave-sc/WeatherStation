@@ -26,7 +26,7 @@ namespace LoRaWeatherStation.UserInterface.Controls
                     .DisposeWith(disposables);
                 
                 this.WhenAnyValue(x => x.Value, x => x.ValueGradient)
-                    .Select((value, stops) => new SolidColorBrush(stops.GetColorAtOffset(value)))
+                    .Select((value, stops) => new SolidColorBrush(Double.IsNaN(value) ? Colors.Black : stops.GetColorAtOffset(value)))
                     .BindTo(ValueText, x => x.Foreground)
                     .DisposeWith(disposables);
             });

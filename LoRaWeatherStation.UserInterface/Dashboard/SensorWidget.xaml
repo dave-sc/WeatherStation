@@ -1,0 +1,36 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:dashboard="clr-namespace:LoRaWeatherStation.UserInterface.Dashboard"
+             xmlns:controls="clr-namespace:LoRaWeatherStation.UserInterface.Controls"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="LoRaWeatherStation.UserInterface.Dashboard.SensorWidget">
+    <UserControl.Styles>
+        <Style Selector="controls|ColoredValueDisplay">
+            <Setter Property="VerticalAlignment" Value="Bottom" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+        
+        <Style Selector="controls|ColoredValueDisplay.primary">
+            <Setter Property="TextBlock.FontSize" Value="78" />
+            <Setter Property="TextBlock.FontWeight" Value="Light" />
+        </Style>
+        
+        <Style Selector="controls|ColoredValueDisplay.secondary">
+            <Setter Property="TextBlock.FontSize" Value="54" />
+            <Setter Property="TextBlock.FontWeight" Value="Light" />
+            <Setter Property="Padding" Value="0,0,0,5" />
+        </Style>
+        
+        <Style Selector="controls|ColoredValueDisplay.none">
+            <Setter Property="IsVisible" Value="False" />
+        </Style>
+    </UserControl.Styles>
+    <dashboard:WidgetContainer x:Name="Container" HeaderIcon="{StaticResource Material.CoolantTemperature}">
+        <Grid x:Name="ValueGrid" ColumnDefinitions="Auto Auto" VerticalAlignment="Center">
+            <controls:ColoredValueDisplay x:Name="Primary" Grid.Column="0" />
+            <controls:ColoredValueDisplay x:Name="Secondary" Grid.Column="1" />
+        </Grid>
+    </dashboard:WidgetContainer>
+</UserControl>

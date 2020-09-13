@@ -44,8 +44,6 @@
         </Style>
         
         <Style Selector="controls|ColoredValueDisplay.temperature">
-            <Setter Property="TextBlock.FontSize" Value="78" />
-            <Setter Property="TextBlock.FontWeight" Value="Light" />
             <Setter Property="Unit" Value="°" />
             <Setter Property="ValueGradient">
                 <GradientStops>
@@ -65,8 +63,6 @@
         </Style>
         
         <Style Selector="controls|ColoredValueDisplay.humidity">
-            <Setter Property="TextBlock.FontSize" Value="54" />
-            <Setter Property="TextBlock.FontWeight" Value="Light" />
             <Setter Property="ValueFormat" Value="0" />
             <Setter Property="Unit" Value="%" />
             <Setter Property="ValueGradient">

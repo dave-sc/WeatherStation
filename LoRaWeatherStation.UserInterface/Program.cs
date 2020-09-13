@@ -50,6 +50,7 @@ namespace LoRaWeatherStation.UserInterface
 
         private static void ConfigureServices(IKernel kernel)
         {
+            kernel.BindOptions<DashboardOptions>(DashboardOptions.SectionName);
             kernel.Bind<WeatherStationClient>().ToMethod(ctx => new WeatherStationClient(ctx.Kernel.Get<IConfiguration>().GetValue<string>("WeatherService:ServiceUri"))).InSingletonScope();
         }
 

@@ -1,0 +1,12 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:dashboard="clr-namespace:LoRaWeatherStation.UserInterface.Dashboard"
+             xmlns:controls="clr-namespace:LoRaWeatherStation.UserInterface.Controls"
+             mc:Ignorable="d" d:DesignWidth="100" d:DesignHeight="100"
+             x:Class="LoRaWeatherStation.UserInterface.Dashboard.ClockWidget">
+    <dashboard:WidgetContainer>
+        <controls:ClockControl x:Name="Clock" />
+    </dashboard:WidgetContainer>
+</UserControl>

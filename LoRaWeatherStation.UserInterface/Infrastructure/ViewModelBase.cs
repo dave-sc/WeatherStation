@@ -6,19 +6,12 @@ using ReactiveUI;
 
 namespace LoRaWeatherStation.UserInterface.Infrastructure
 {
-    public class ViewModelBase : ReactiveObject, IActivatableViewModel, IRoutableViewModel
+    public class ViewModelBase : ReactiveObject, IActivatableViewModel
     {
         public ViewModelActivator Activator { get; }
         
-        public IScreen HostScreen { get; }
-        
-        public string UrlPathSegment { get; }
-        
-        public ViewModelBase(IScreen hostScreen)
+        public ViewModelBase()
         {
-            HostScreen = hostScreen;
-            UrlPathSegment = GetType().Name;
-            
             Activator = new ViewModelActivator();
             this.WhenActivated(disposables =>
             {

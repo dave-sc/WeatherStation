@@ -18,6 +18,29 @@ namespace LoRaWeatherStation.DataModel
         public float AirQualityIndex { get; set; }
         public float Luminance { get; set; }
         public float WindSpeed { get; set; }
+        
+        public float GetValue(SensorValues value)
+        {
+            switch (value)
+            {
+                case SensorValues.None:
+                    return float.NaN;
+                case SensorValues.Temperature:
+                    return Temperature;
+                case SensorValues.Humidity:
+                    return Humidity;
+                case SensorValues.Pressure:
+                    return Pressure;
+                case SensorValues.AirQualityIndex:
+                    return AirQualityIndex;
+                case SensorValues.Luminance:
+                    return Luminance;
+                case SensorValues.WindSpeed:
+                    return WindSpeed;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(value), value, null);
+            }
+        }
 
         public override string ToString()
         {

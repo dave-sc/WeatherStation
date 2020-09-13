@@ -32,6 +32,7 @@ namespace LoRaWeatherStation.UserInterface.Controls
             this.WhenActivated(disposables =>
             {
                 var forecast = this.WhenAnyValue(x => x.Forecast)
+                    .Select(data => data ?? new ForecastData[0])
                     .Select(data => data.OrderBy(y => y.Time).ToArray())
                     .Select(data => data.Where(y => y.Time <= (data.FirstOrDefault()?.Time.Date ?? DateTime.MinValue.Date).AddDays(1)).ToArray());
 
@@ -68,7 +69,7 @@ namespace LoRaWeatherStation.UserInterface.Controls
                     .DisposeWith(disposables);
 
                 var tempRange = forecast
-                    .Select(data => (min: data.Min(item => item.Temperature), max: data.Max(item => item.Temperature)))
+                    .Select(data => data.Any() ? (min: data.Min(item => item.Temperature), max: data.Max(item => item.Temperature)) : (min: 0, max: 20))
                     .Select((minTemp, maxTemp) => (min: Math.Floor(minTemp / 5) * 5, max: Math.Ceiling(maxTemp / 5) * 5));
                 
                 tempRange
