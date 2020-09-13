@@ -34,5 +34,21 @@ namespace LoRaWeatherStation.Utils.Reactive
             return observable.Select(x => Observable.FromAsync(() => selector(x)))
                 .Concat();
         }
+        
+        //https://stackoverflow.com/a/11464537
+        public static IObservable<T> RepeatLastWhen<T>(this IObservable<T> inner, TimeSpan period)
+        {
+            return inner.RepeatLastWhen(Observable.Interval(period));
+        }
+        
+        //https://stackoverflow.com/a/11464537
+        public static IObservable<TResult> RepeatLastWhen<TResult, TDontCare>(this IObservable<TResult> inner, IObservable<TDontCare> trigger)
+        {    
+            return inner.Select(x => 
+                trigger
+                    .Select(_ => x)
+                    .StartWith(x)
+            ).Switch();
+        }
     }
 }
