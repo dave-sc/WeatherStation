@@ -14,11 +14,6 @@ namespace LoRaWeatherStation.UserInterface
         public MainViewModel()
             : base(null)
         {
-            Pages = new ObservableCollection<IRoutableViewModel>()
-            {
-                new DashboardViewModel(this)
-            };
-            
             this.WhenActivated((CompositeDisposable disposables) =>
             {
                 Router.Navigate.Execute(new DashboardViewModel(this));
@@ -26,7 +21,5 @@ namespace LoRaWeatherStation.UserInterface
         }
         
         public RoutingState Router { get; } = new RoutingState();
-        
-        public ObservableCollection<IRoutableViewModel> Pages { get; }
     }
 }

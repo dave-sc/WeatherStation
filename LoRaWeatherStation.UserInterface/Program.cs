@@ -1,12 +1,14 @@
 ﻿using System;
-using System.Reflection;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading;
 using Avalonia;
 using Avalonia.ReactiveUI;
-using ReactiveUI;
-using Splat;
+using LoRaWeatherStation.Client;
+using LoRaWeatherStation.UserInterface.Configuration;
+using Microsoft.Extensions.Configuration;
+using Ninject;
+using Splat.Ninject;
 
 namespace LoRaWeatherStation.UserInterface
 {
@@ -17,7 +19,7 @@ namespace LoRaWeatherStation.UserInterface
         // yet and stuff might break.
         public static void Main(string[] args)
         {
-            var app = BuildAvaloniaApp();
+            var app = BuildAvaloniaApp(args);
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
                 SuppressConsoleCursor();
@@ -33,14 +35,22 @@ namespace LoRaWeatherStation.UserInterface
         }
 
         // Avalonia configuration, don't remove; also used by visual designer.
-        public static AppBuilder BuildAvaloniaApp()
+        public static AppBuilder BuildAvaloniaApp(string[] args)
         {
-            Locator.CurrentMutable.RegisterViewsForViewModels(Assembly.GetExecutingAssembly());
+            var kernel = new StandardKernel();
+            kernel.UseNinjectDependencyResolver();
+            kernel.UseDefaultConfiguration(args);
+            ConfigureServices(kernel);
             
             return AppBuilder.Configure<App>()
                 .UsePlatformDetect()
                 .LogToDebug()
                 .UseReactiveUI();
+        }
+
+        private static void ConfigureServices(IKernel kernel)
+        {
+            kernel.Bind<WeatherStationClient>().ToMethod(ctx => new WeatherStationClient(ctx.Kernel.Get<IConfiguration>().GetValue<string>("WeatherService:ServiceUri"))).InSingletonScope();
         }
 
         // Required for now to hide console cursor when starting from linux console without desktop environment

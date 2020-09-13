@@ -5,6 +5,7 @@ using System;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
 using LoRaWeatherStation.UserInterface.Infrastructure;
+using Splat;
 
 namespace LoRaWeatherStation.UserInterface
 {
@@ -19,7 +20,7 @@ namespace LoRaWeatherStation.UserInterface
 
             if (type != null)
             {
-                return (Control)Activator.CreateInstance(type);
+                return (Control) Locator.Current.GetService(type);
             }
             else
             {
