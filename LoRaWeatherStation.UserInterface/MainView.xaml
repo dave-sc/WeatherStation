@@ -2,7 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:reactiveUi="http://reactiveui.net"
              x:Class="LoRaWeatherStation.UserInterface.MainView">
-    <SplitView x:Name="SplitView" Width="960" Height="540" CompactPaneLength="72" 
+    <SplitView x:Name="SplitView" Width="1024" Height="600" CompactPaneLength="72" 
                DisplayMode="CompactOverlay" UseLightDismissOverlayMode="True" PanePlacement="Right">
         <SplitView.Pane>
             <DockPanel>

@@ -34,7 +34,7 @@
                         <DockPanel Margin="{TemplateBinding Padding}">
                             <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Center" IsVisible="{TemplateBinding Header, Converter={x:Static ObjectConverters.IsNotNull}}">
                                 <Image Margin="4" Height="36" Width="36" Stretch="Uniform" VerticalAlignment="Center" Source="{TemplateBinding HeaderIcon}" />
-                                <ContentPresenter Name="PART_HeaderPresenter" TextBlock.FontSize="27" Margin="4" VerticalAlignment="Center" Content="{TemplateBinding Header}" />
+                                <ContentPresenter Name="PART_HeaderPresenter" TextBlock.FontSize="32" Margin="4" VerticalAlignment="Center" Content="{TemplateBinding Header}" />
                             </StackPanel>
                             <ContentPresenter Name="PART_ContentPresenter" Content="{TemplateBinding Content}" />
                         </DockPanel>

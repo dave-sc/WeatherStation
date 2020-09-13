@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="clr-namespace:LoRaWeatherStation.UserInterface.Controls"
              xmlns:dashboard="clr-namespace:LoRaWeatherStation.UserInterface.Dashboard"
-             mc:Ignorable="d" d:DesignWidth="888" d:DesignHeight="540"
+             mc:Ignorable="d" d:DesignWidth="952" d:DesignHeight="600"
              x:Class="LoRaWeatherStation.UserInterface.Dashboard.DashboardView">
     <UserControl.Styles>
         <Style Selector="dashboard|WidgetContainer">

@@ -4,7 +4,7 @@
         xmlns:userInterface="clr-namespace:LoRaWeatherStation.UserInterface"
         Title="Weather Station"
         SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen" SystemDecorations="Full" CanResize="False">
-    <Viewbox Width="534" Height="300">
+    <Viewbox Width="512" Height="300">
         <userInterface:MainView />
     </Viewbox>
 </Window>
