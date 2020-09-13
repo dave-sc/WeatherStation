@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\LoRaWeatherStation.DataModel\LoRaWeatherStation.DataModel.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.2.0" />
+      <PackageReference Include="System.Net.Http.Json" Version="3.2.1" />
+    </ItemGroup>
+
+</Project>

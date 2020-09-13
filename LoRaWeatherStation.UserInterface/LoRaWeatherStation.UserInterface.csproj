@@ -25,7 +25,7 @@
     <PackageReference Include="SkiaSharp.NativeAssets.Linux" Version="2.80.1" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LoRaWeatherStation.DataModel\LoRaWeatherStation.DataModel.csproj" />
+    <ProjectReference Include="..\LoRaWeatherStation.Client\LoRaWeatherStation.Client.csproj" />
     <ProjectReference Include="..\LoRaWeatherStation.Utils.Ui\LoRaWeatherStation.Utils.Ui.csproj" />
     <ProjectReference Include="..\WeatherLib\WeatherLib\WeatherLib.csproj" />
   </ItemGroup>
