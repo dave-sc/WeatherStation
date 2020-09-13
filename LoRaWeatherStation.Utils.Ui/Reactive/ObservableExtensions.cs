@@ -50,5 +50,14 @@ namespace LoRaWeatherStation.Utils.Reactive
                     .StartWith(x)
             ).Switch();
         }
+
+        public static IObservable<(T1, T2)> CombineLatest<T1, T2>(this IObservable<T1> first, IObservable<T2> second) =>
+            first.CombineLatest(second, (a, b) => (a, b));
+        public static IObservable<(T1, T2, T3)> CombineLatest<T1, T2, T3>(this IObservable<T1> first, IObservable<T2> second, IObservable<T3> third) =>
+            first.CombineLatest(second, third, (a, b, c) => (a, b, c));
+        public static IObservable<(T1, T2, T3, T4)> CombineLatest<T1, T2, T3, T4>(this IObservable<T1> first, IObservable<T2> second, IObservable<T3> third, IObservable<T4> forth) =>
+            first.CombineLatest(second, third, forth, (a, b, c, d) => (a, b, c, d));
+        public static IObservable<(T1, T2, T3, T4, T5)> CombineLatest<T1, T2, T3, T4, T5>(this IObservable<T1> first, IObservable<T2> second, IObservable<T3> third, IObservable<T4> forth, IObservable<T5> fifth) =>
+            first.CombineLatest(second, third, forth, fifth, (a, b, c, d, e) => (a, b, c, d, e));
     }
 }
