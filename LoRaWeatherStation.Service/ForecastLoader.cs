@@ -119,13 +119,11 @@ namespace LoRaWeatherStation.Service
             var dataPoints = await weatherDataProvider.GetForecastAsync();
             cancellationToken.ThrowIfCancellationRequested();
             
-            var timeZoneName = TimeZoneLookup.GetTimeZone(location.Latitude, location.Longitude).Result;
-            var locationTimeZone = TZConvert.GetTimeZoneInfo(timeZoneName);
             var forecast = dataPoints.Select(f => new ForecastData()
             {
                 Location = location,
-                LoadTime = DateTime.UtcNow, 
-                Time = f.Time.Kind != DateTimeKind.Unspecified ? TimeZoneInfo.ConvertTimeToUtc(f.Time) : TimeZoneInfo.ConvertTime(f.Time, locationTimeZone, TimeZoneInfo.Utc),
+                LoadTime = DateTime.UtcNow,
+                Time = f.Time.Kind == DateTimeKind.Utc ? f.Time : throw new InvalidOperationException($"Excepted DateTimeKind.Utc for ForecastDataPoint, got '{f.Time.Kind}'. Timestamp: {f.Time}"),
                 Temperature = f.Temperature,
                 TemperatureError = f.TemperatureError,
                 Precipitation = f.Precipitation,
