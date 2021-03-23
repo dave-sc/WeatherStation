@@ -6,9 +6,14 @@ using Avalonia;
 using Avalonia.ReactiveUI;
 using LoRaWeatherStation.Client;
 using LoRaWeatherStation.UserInterface.Configuration;
+using LoRaWeatherStation.UserInterface.SystemControl;
 using Microsoft.Extensions.Configuration;
 using Ninject;
+using Splat;
 using Splat.Ninject;
+using Unosquare.RaspberryIO;
+using Unosquare.RaspberryIO.Abstractions;
+using Unosquare.WiringPi;
 
 namespace LoRaWeatherStation.UserInterface
 {
@@ -19,10 +24,17 @@ namespace LoRaWeatherStation.UserInterface
         // yet and stuff might break.
         public static void Main(string[] args)
         {
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                Pi.Init<BootstrapWiringPi>();
+            }
+
             var app = BuildAvaloniaApp(args);
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
+                Pi.Init<BootstrapWiringPi>();
                 SuppressConsoleCursor();
+                Locator.Current.GetService<BacklightControl>().Initialize();
                 // On Raspbian additionally depends on libSkiaSharp (shipped via dotnet publish), libfontconfig1 (fontconfig), libinput10
                 // Dependencies can be diagnosed by searching for the given file name in the DllNotFoundException or by executing
                 // ldd <filename> and looking for missing dependencies of that library
@@ -51,7 +63,9 @@ namespace LoRaWeatherStation.UserInterface
         private static void ConfigureServices(IKernel kernel)
         {
             kernel.BindOptions<DashboardOptions>(DashboardOptions.SectionName);
+            kernel.BindOptions<BacklightOptions>(BacklightOptions.SectionName);
             kernel.Bind<WeatherStationClient>().ToMethod(ctx => new WeatherStationClient(ctx.Kernel.Get<IConfiguration>().GetValue<string>("WeatherService:ServiceUri"))).InSingletonScope();
+            kernel.Bind<IGpioController>().ToMethod(ctx => RuntimeInformation.IsOSPlatform(OSPlatform.Linux) ? Pi.Gpio : null);
         }
 
         // Required for now to hide console cursor when starting from linux console without desktop environment

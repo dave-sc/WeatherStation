@@ -40,6 +40,8 @@
     <PackageReference Include="SkiaSharp.NativeAssets.Linux" Version="2.80.1" />
     <PackageReference Include="Splat.Ninject" Version="9.5.37" />
     <PackageReference Include="Svg.Skia.Avalonia" Version="0.10.0-preview3" />
+    <PackageReference Include="Unosquare.Raspberry.IO" Version="0.27.1" />
+    <PackageReference Include="Unosquare.WiringPi" Version="0.5.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LoRaWeatherStation.Client\LoRaWeatherStation.Client.csproj" />
