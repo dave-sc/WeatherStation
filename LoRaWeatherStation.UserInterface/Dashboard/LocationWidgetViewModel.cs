@@ -126,6 +126,10 @@ namespace LoRaWeatherStation.UserInterface.Dashboard
             {
                 return await _apiClient.GetWeatherForecast(location);
             }
+            catch (OperationCanceledException)
+            {
+                return new ForecastData[0];
+            }  
             catch (HttpRequestException)
             {
                 return new ForecastData[0];
@@ -140,6 +144,10 @@ namespace LoRaWeatherStation.UserInterface.Dashboard
             try
             {
                 return await _apiClient.GetCurrentWeather(location);
+            }
+            catch (OperationCanceledException)
+            {
+                return null;
             }
             catch (HttpRequestException)
             {
@@ -156,6 +164,10 @@ namespace LoRaWeatherStation.UserInterface.Dashboard
             {
                 return await _apiClient.GetCurrentSensorValues(sensor);
             }
+            catch (OperationCanceledException)
+            {
+                return null;
+            }    
             catch (HttpRequestException)
             {
                 return null;

@@ -82,6 +82,10 @@ namespace LoRaWeatherStation.UserInterface.Dashboard
             {
                 return await _apiClient.GetCurrentSensorValues(sensor);
             }
+            catch (OperationCanceledException)
+            {
+                return null;
+            }    
             catch (HttpRequestException)
             {
                 return null;
