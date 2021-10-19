@@ -21,7 +21,7 @@ namespace LoRaWeatherStation.Service
         private readonly IWeatherDataProviderFactory _weatherDataProviderFactory;
         private readonly CancellationTokenSource _stopCancellationTokenSource;
         
-        private Timer _updateTimer;
+        private Task _backgroundTask;
 
         public ForecastLoader(ILogger<ForecastLoader> logger, IServiceScopeFactory serviceScopeFactory, IWeatherDataProviderFactory weatherDataProviderFactory)
         {
@@ -50,35 +50,47 @@ namespace LoRaWeatherStation.Service
                 .Select(l => dbContext.Forecasts.Where(f => f.Location == l).OrderByDescending(f => f.Time).FirstOrDefault())
                 .Select(f => f != null ? f.Time : DateTime.MinValue)
                 .Any(t => t <= DateTime.UtcNow.AddHours(-1));
-            //var requiresUpdate = dbContext.Forecasts
-            //    .GroupBy(f => f.Location).ToArray()
-            //    .Select(g => g.Max(f => f.Time))
-            //    .Any(t => t <= DateTime.UtcNow.AddHours(-1));
             UpdateSchedule = new Queue<DateTime>(Enumerable.Range(requiresUpdate ? now.Hour : now.Hour + 1, 24).Select(h => today.AddHours(h)));
-            _updateTimer = new Timer(OnUpdateTimerTick, null, TimeSpan.FromSeconds(30), TimeSpan.FromMinutes(5));
+            
+            _backgroundTask = BeginBackgroundLoop(_stopCancellationTokenSource.Token);
 
             return Task.CompletedTask;
         }
 
-        private void OnUpdateTimerTick(object? state)
+        private async Task BeginBackgroundLoop(CancellationToken cancellationToken)
         {
-            bool isUpdateBecauseOfSchedule;
-            if (UpdateSchedule.Count > 0 && DateTime.UtcNow >= UpdateSchedule.Peek())
-                isUpdateBecauseOfSchedule = true;
-            else if (LastUpdate == null)
-                isUpdateBecauseOfSchedule = false;
-            else
-                return;
-
-            _logger.LogInformation("Starting periodic forecast update (is scheduled: {flag})", isUpdateBecauseOfSchedule);
             try
             {
-                UpdateForecastsAsync(_stopCancellationTokenSource.Token).GetAwaiter().GetResult();
-
-                if (isUpdateBecauseOfSchedule)
-                    UpdateSchedule.Enqueue(UpdateSchedule.Dequeue().AddDays(1));
+                await Task.Delay(TimeSpan.FromSeconds(30), cancellationToken);
                 
-                _logger.LogInformation("Periodic forecast update completed. (Next update will occur on {timestamp})", UpdateSchedule.Peek());
+                while (!cancellationToken.IsCancellationRequested)
+                {
+                    bool isUpdateBecauseOfSchedule;
+                    if (UpdateSchedule.Count > 0 && DateTime.UtcNow >= UpdateSchedule.Peek())
+                        isUpdateBecauseOfSchedule = true;
+                    else if (LastUpdate == null)
+                        isUpdateBecauseOfSchedule = false;
+                    else
+                        continue;
+
+                    _logger.LogInformation("Starting periodic forecast update (is scheduled: {flag})", isUpdateBecauseOfSchedule);
+                    try
+                    {
+                        await UpdateForecastsAsync(cancellationToken);
+
+                        if (isUpdateBecauseOfSchedule)
+                            UpdateSchedule.Enqueue(UpdateSchedule.Dequeue().AddDays(1));
+                
+                        _logger.LogInformation("Periodic forecast update completed. (Next update will occur on {timestamp})", UpdateSchedule.Peek());
+                    
+                        await Task.Delay(TimeSpan.FromMinutes(1), cancellationToken);
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogError(ex, "Periodic forecast update failed, will retry in 15 minutes.");
+                        await Task.Delay(TimeSpan.FromMinutes(15), cancellationToken);
+                    }
+                }
             }
             catch (OperationCanceledException)
             {
@@ -151,19 +163,17 @@ namespace LoRaWeatherStation.Service
             _logger.LogInformation("Fetched {new} new and deleted {old} old forecast data points for location '{location}'", forecast.Length, outdatedForecast.Length, location.Name);
         }
 
-        public Task StopAsync(CancellationToken cancellationToken)
+        public async Task StopAsync(CancellationToken cancellationToken)
         {
             _logger.LogInformation("Stopping forecast loader service");
             
             _stopCancellationTokenSource.Cancel();
-            _updateTimer?.Dispose();
-            return Task.CompletedTask;
+            await _backgroundTask;
         }
 
         public void Dispose()
         {
             _stopCancellationTokenSource.Cancel();
-            _updateTimer?.Dispose();
         }
     }
 }
