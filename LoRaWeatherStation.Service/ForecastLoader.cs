@@ -67,11 +67,18 @@ namespace LoRaWeatherStation.Service
                 {
                     bool isUpdateBecauseOfSchedule;
                     if (UpdateSchedule.Count > 0 && DateTime.UtcNow >= UpdateSchedule.Peek())
+                    {
                         isUpdateBecauseOfSchedule = true;
+                    }
                     else if (LastUpdate == null)
+                    {
                         isUpdateBecauseOfSchedule = false;
+                    }
                     else
+                    {
+                        await Task.Delay(TimeSpan.FromMinutes(1), cancellationToken);
                         continue;
+                    }
 
                     _logger.LogInformation("Starting periodic forecast update (is scheduled: {flag})", isUpdateBecauseOfSchedule);
                     try
@@ -82,8 +89,6 @@ namespace LoRaWeatherStation.Service
                             UpdateSchedule.Enqueue(UpdateSchedule.Dequeue().AddDays(1));
                 
                         _logger.LogInformation("Periodic forecast update completed. (Next update will occur on {timestamp})", UpdateSchedule.Peek());
-                    
-                        await Task.Delay(TimeSpan.FromMinutes(1), cancellationToken);
                     }
                     catch (Exception ex)
                     {
