@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Reactive.Linq;
 using LoRaWeatherStation.UserInterface.Configuration;
 using Unosquare.RaspberryIO.Abstractions;
@@ -35,20 +36,15 @@ namespace LoRaWeatherStation.UserInterface.SystemControl
 
         private double GetDesiredBrightness(DateTime time)
         {
-            switch (time.DayOfWeek)
-            {
-                case DayOfWeek.Monday:
-                case DayOfWeek.Tuesday:
-                case DayOfWeek.Wednesday:
-                case DayOfWeek.Thursday:
-                case DayOfWeek.Friday:
-                    return time.TimeOfDay > _options.WeekDayDimEndTime && time.TimeOfDay < _options.WeekDayDimStartTime ? _options.BacklightBrightnessNormal : _options.BacklightBrightnessDimmed;
-                case DayOfWeek.Saturday:
-                case DayOfWeek.Sunday:
-                    return time.TimeOfDay > _options.WeekEndDimEndTime && time.TimeOfDay < _options.WeekEndDimStartTime ? _options.BacklightBrightnessNormal : _options.BacklightBrightnessDimmed;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            var todaysSchedule = _options.Schedule?.FirstOrDefault(schedule => schedule.ApplicableDays.Contains(time.DayOfWeek));
+            if (todaysSchedule == null)
+                return 100;
+
+            var currentScheduleEntry = todaysSchedule.ScheduleEntries?.LastOrDefault(entry => time.TimeOfDay >= entry.StartTime);
+            if (currentScheduleEntry == null)
+                return 100;
+
+            return currentScheduleEntry.Brightness;
         }
 
         private void SetBrightness(GpioPin brightnessPin, double brightness)
