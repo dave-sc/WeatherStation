@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFrameworks>net6.0</TargetFrameworks>
     <RuntimeIdentifiers>win-x64;linux-arm</RuntimeIdentifiers>
     <UserSecretsId>4ea9423f-bf37-44e9-b93e-78b2b6060301</UserSecretsId>
   </PropertyGroup>
