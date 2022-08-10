@@ -87,6 +87,7 @@ namespace LoRaWeatherStation.UserInterface
                     
                     Thread.Sleep(100);
                 }
+                // ReSharper disable once FunctionNeverReturns
             }
 
             var thread = new Thread(ThreadStart)
