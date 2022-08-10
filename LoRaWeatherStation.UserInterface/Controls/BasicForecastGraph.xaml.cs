@@ -37,12 +37,12 @@ namespace LoRaWeatherStation.UserInterface.Controls
                     .Select(data => data.Where(y => y.Time <= (data.FirstOrDefault()?.Time.Date ?? DateTime.MinValue.Date).AddDays(1)).ToArray());
 
                 forecast
-                    .Select(data => data.Select(item => new DataPoint(OxyPlot.Axes.DateTimeAxis.ToDouble(item.Time), item.Temperature)))
+                    .Select(data => data.Select(item => OxyPlot.Axes.DateTimeAxis.CreateDataPoint(item.Time, item.Temperature)))
                     .BindTo(TempSeries, x => x.Items)
                     .DisposeWith(disposables);
                 
                 forecast
-                    .Select(data => data.Select(item => new DataPoint(OxyPlot.Axes.DateTimeAxis.ToDouble(item.Time), item.Precipitation)))
+                    .Select(data => data.Select(item => OxyPlot.Axes.DateTimeAxis.CreateDataPoint(item.Time, item.Precipitation)))
                     .BindTo(RainSeries, x => x.Items)
                     .DisposeWith(disposables);
 
@@ -87,11 +87,11 @@ namespace LoRaWeatherStation.UserInterface.Controls
                     .Select(x => (min: x, max: x.AddDays(1)));
                 
                 timeRange
-                    .Select(range => range.min)
-                    .BindTo(TimeAxis, x => x.FirstDateTime)
+                    .Select(range => OxyPlot.Axes.DateTimeAxis.ToDouble(range.min))
+                    .BindTo(TimeAxis, x => x.Minimum)
                     .DisposeWith(disposables);
-                timeRange.Select(range => range.max)
-                    .BindTo(TimeAxis, x => x.LastDateTime)
+                timeRange.Select(range => OxyPlot.Axes.DateTimeAxis.ToDouble(range.max))
+                    .BindTo(TimeAxis, x => x.Maximum)
                     .DisposeWith(disposables);
             });
         }
