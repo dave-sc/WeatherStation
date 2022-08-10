@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using LoRaWeatherStation.DataModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 
 namespace LoRaWeatherStation.Service.Controllers
 {
@@ -13,12 +12,10 @@ namespace LoRaWeatherStation.Service.Controllers
     [Route("sensors")]
     public class SensorsController : ControllerBase
     {
-        private readonly ILogger<SensorsController> _logger;
         private readonly WeatherStationContext _dbContext;
 
-        public SensorsController(ILogger<SensorsController> logger, WeatherStationContext dbContext)
+        public SensorsController(WeatherStationContext dbContext)
         {
-            _logger = logger;
             _dbContext = dbContext;
         }
         

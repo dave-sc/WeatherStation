@@ -6,7 +6,6 @@ using LoRaWeatherStation.DataModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace LoRaWeatherStation.Service.Controllers
 {
@@ -14,14 +13,12 @@ namespace LoRaWeatherStation.Service.Controllers
     [Route("locations")]
     public class LocationsController : ControllerBase
     {
-        private readonly ILogger<LocationsController> _logger;
         private readonly IHostApplicationLifetime _applicationLifetime;
         private readonly WeatherStationContext _dbContext;
         private readonly ForecastLoader _forecastLoader;
 
-        public LocationsController(ILogger<LocationsController> logger, IHostApplicationLifetime applicationLifetime, WeatherStationContext dbContext, ForecastLoader forecastLoader)
+        public LocationsController(IHostApplicationLifetime applicationLifetime, WeatherStationContext dbContext, ForecastLoader forecastLoader)
         {
-            _logger = logger;
             _applicationLifetime = applicationLifetime;
             _dbContext = dbContext;
             _forecastLoader = forecastLoader;
