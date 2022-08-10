@@ -32,7 +32,7 @@ namespace LoRaWeatherStation.UserInterface.Controls
             this.WhenActivated(disposables =>
             {
                 var forecast = this.WhenAnyValue(x => x.Forecast)
-                    .Select(data => data ?? new ForecastData[0])
+                    .Select(data => data ?? Array.Empty<ForecastData>())
                     .Select(data => data.OrderBy(y => y.Time).ToArray())
                     .Select(data => data.Where(y => y.Time <= (data.FirstOrDefault()?.Time.Date ?? DateTime.MinValue.Date).AddDays(1)).ToArray());
 

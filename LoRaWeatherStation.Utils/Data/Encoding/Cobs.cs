@@ -55,7 +55,7 @@ namespace LoRaWeatherStation.Utils.Data.Encoding
         public static byte[] Decode(IReadOnlyList<byte> data)
         {
             if (data.Count == 0)
-                return new byte[0];
+                return Array.Empty<byte>();
 
             var result = new byte[data.Count];
             

@@ -120,7 +120,7 @@ namespace LoRaWeatherStation.UserInterface.Dashboard
         private async Task<ForecastData[]> GetWeatherForecast(ForecastLocation location)
         {
             if (location == null)
-                return new ForecastData[0];
+                return Array.Empty<ForecastData>();
             
             try
             {
@@ -128,11 +128,11 @@ namespace LoRaWeatherStation.UserInterface.Dashboard
             }
             catch (OperationCanceledException)
             {
-                return new ForecastData[0];
+                return Array.Empty<ForecastData>();
             }  
             catch (HttpRequestException)
             {
-                return new ForecastData[0];
+                return Array.Empty<ForecastData>();
             }            
         }
         
