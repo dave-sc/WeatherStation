@@ -65,7 +65,7 @@ namespace LoRaWeatherStation.UserInterface
             kernel.BindOptions<DashboardOptions>(DashboardOptions.SectionName);
             kernel.BindOptions<BacklightOptions>(BacklightOptions.SectionName);
             kernel.Bind<WeatherStationClient>().ToMethod(ctx => new WeatherStationClient(ctx.Kernel.Get<IConfiguration>().GetValue<string>("WeatherService:ServiceUri"))).InSingletonScope();
-            kernel.Bind<IGpioController>().ToMethod(ctx => RuntimeInformation.IsOSPlatform(OSPlatform.Linux) ? Pi.Gpio : null);
+            kernel.Bind<IGpioController>().ToMethod(_ => RuntimeInformation.IsOSPlatform(OSPlatform.Linux) ? Pi.Gpio : null);
         }
 
         // Required for now to hide console cursor when starting from linux console without desktop environment

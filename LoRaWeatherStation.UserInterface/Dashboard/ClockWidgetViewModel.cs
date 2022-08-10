@@ -13,7 +13,7 @@ namespace LoRaWeatherStation.UserInterface.Dashboard
             this.WhenActivated(disposables =>
             {
                 _currentTime = Observable.Timer(TimeSpan.Zero, TimeSpan.FromSeconds(0.5))
-                    .Select(x => DateTime.Now)
+                    .Select(_ => DateTime.Now)
                     .ObserveOn(RxApp.MainThreadScheduler)
                     .ToProperty(this, x => x.CurrentTime)
                     .DisposeWith(disposables);

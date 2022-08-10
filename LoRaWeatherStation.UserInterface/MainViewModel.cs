@@ -14,7 +14,7 @@ namespace LoRaWeatherStation.UserInterface
     {
         public MainViewModel()
         {
-            this.WhenActivated((CompositeDisposable disposables) =>
+            this.WhenActivated((CompositeDisposable _) =>
             {
                 Router.Navigate.Execute(new DashboardViewModel(this, Locator.Current.GetService<DashboardOptions>()));
             });

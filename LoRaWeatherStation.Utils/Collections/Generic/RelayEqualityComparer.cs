@@ -9,7 +9,7 @@ namespace LoRaWeatherStation.Utils.Collections.Generic
         private readonly Func<T, int> _getHashCode;
 
         public RelayEqualityComparer(Func<T, T, bool> equals)
-            : this(equals, t => 0)
+            : this(equals, _ => 0)
         {
         }
 
