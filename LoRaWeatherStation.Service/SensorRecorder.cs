@@ -50,7 +50,7 @@ namespace LoRaWeatherStation.Service
             _logger.LogDebug("Received LoRa packet ({length} bytes)", data.Length);
             if (data.Length != 15 || data[0] != 0x42 || data[14] != 0xFF)
             {
-                _logger.LogWarning("Dropped LoRa packet because of invalid structure", data.Length);
+                _logger.LogWarning("Dropped LoRa packet because of invalid structure ({length} bytes)", data.Length);
                 return;
             }
 
@@ -68,7 +68,7 @@ namespace LoRaWeatherStation.Service
                     SupportedValues = SensorValues.Temperature | SensorValues.Humidity | SensorValues.Pressure,
                 };
                 dbContext.Add(sensor);
-                _logger.LogInformation("Adding sensor entry, because sensor data is from new sensor", sensor);
+                _logger.LogInformation("Adding sensor entry {sensor}, because sensor data is from new sensor", sensor);
             }
 
             var temperature = BitConverter.ToSingle(data, 2);
