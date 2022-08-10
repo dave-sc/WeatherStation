@@ -44,7 +44,7 @@ namespace LoRaWeatherStation.Service
             return Task.CompletedTask;
         }
 
-        private void OnSensorDataReceived(object? sender, LoRaDataReceivedEventArgs e)
+        private void OnSensorDataReceived(object sender, LoRaDataReceivedEventArgs e)
         {
             var data = e.Data;
             _logger.LogDebug("Received LoRa packet ({length} bytes)", data.Length);

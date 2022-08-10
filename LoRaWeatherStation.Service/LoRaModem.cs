@@ -86,7 +86,7 @@ namespace LoRaWeatherStation.Service
             _pipe = null;
         }
 
-        private void OnPacketIncoming(object? sender, SerialDataReceivedEventArgs dataReceivedEventArgs)
+        private void OnPacketIncoming(object sender, SerialDataReceivedEventArgs dataReceivedEventArgs)
         {
             if (_isDiposed)
                 return;

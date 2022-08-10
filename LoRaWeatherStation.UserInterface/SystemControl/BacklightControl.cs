@@ -50,7 +50,7 @@ namespace LoRaWeatherStation.UserInterface.SystemControl
         private void SetBrightness(GpioPin brightnessPin, double brightness)
         {
             brightness = Math.Max(0, Math.Min(100, brightness));
-            brightnessPin.PwmRegister = (int)((double)brightnessPin.PwmRange * ((100d - brightness) / 100d));
+            brightnessPin.PwmRegister = (int)(brightnessPin.PwmRange * ((100d - brightness) / 100d));
         }
     }
 }
