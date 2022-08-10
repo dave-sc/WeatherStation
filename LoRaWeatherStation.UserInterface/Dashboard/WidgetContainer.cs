@@ -14,22 +14,7 @@ namespace LoRaWeatherStation.UserInterface.Dashboard
             get { return GetValue(HeaderIconProperty); }
             set { SetValue(HeaderIconProperty, value); }
         }
-        
-        /// <summary>
-        /// Defines the <see cref="CornerRadius"/> property.
-        /// </summary>
-        public static readonly StyledProperty<CornerRadius> CornerRadiusProperty =
-            AvaloniaProperty.Register<WidgetContainer, CornerRadius>(nameof(CornerRadius));
 
-        /// <summary>
-        /// Gets or sets the radius of the border rounded corners.
-        /// </summary>
-        public CornerRadius CornerRadius
-        {
-            get { return GetValue(CornerRadiusProperty); }
-            set { SetValue(CornerRadiusProperty, value); }
-        }
-        
         /// <summary>
         /// Defines the <see cref="BoxShadow"/> property.
         /// </summary>
