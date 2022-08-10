@@ -21,7 +21,6 @@ namespace LoRaWeatherStation.UserInterface.Controls
     {
         private Plot Plot => this.FindControl<Plot>("Plot");
         private LinearAxis TempAxis => this.FindControl<LinearAxis>("TempAxis");
-        private LinearAxis RainAxis => this.FindControl<LinearAxis>("RainAxis");
         private DateTimeAxis TimeAxis => this.FindControl<DateTimeAxis>("TimeAxis");
         private LineSeries TempSeries => this.FindControl<LineSeries>("TempSeries");
         private LineSeries RainSeries => this.FindControl<LineSeries>("RainSeries");
