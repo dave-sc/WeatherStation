@@ -12,14 +12,14 @@
     <Application.Styles>
         <!--<StyleInclude Source="avares://Avalonia.Themes.Default/DefaultTheme.xaml"/>
         <StyleInclude Source="avares://Avalonia.Themes.Default/Accents/BaseLight.xaml"/>-->
-        <StyleInclude Source="avares://Avalonia.Themes.Fluent/Accents/FluentLight.xaml"/>
+        <StyleInclude Source="avares://Avalonia.Themes.Fluent/FluentLight.xaml"/>
         <StyleInclude Source="resm:OxyPlot.Avalonia.Themes.Default.xaml?assembly=OxyPlot.Avalonia"/>
         
         <Style Selector="local|MainWindow">
-            <Setter Property="FontFamily" Value="avares://Avalonia.Themes.Fluent/Assets#Roboto" />
+            <Setter Property="FontFamily" Value="avares://LoRaWeatherStation.UserInterface/Assets/Fonts#Roboto" />
         </Style>
         <Style Selector="local|MainView">
-            <Setter Property="FontFamily" Value="avares://Avalonia.Themes.Fluent/Assets#Roboto" />
+            <Setter Property="FontFamily" Value="avares://LoRaWeatherStation.UserInterface/Assets/Fonts#Roboto" />
         </Style>
         
         <Style Selector="dashboard|WidgetContainer">

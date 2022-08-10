@@ -13,19 +13,19 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="GeoTimeZone" Version="4.0.0" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.7">
+      <PackageReference Include="GeoTimeZone" Version="4.1.0" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.7">
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         <PrivateAssets>all</PrivateAssets>
       </PackageReference>
-      <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.7">
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.7">
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
       </PackageReference>
-      <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.7" />
-      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.4" />
-      <PackageReference Include="System.IO.Ports" Version="4.7.0" />
-      <PackageReference Include="TimeZoneConverter" Version="3.2.0" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.7" />
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.6" />
+      <PackageReference Include="System.IO.Ports" Version="6.0.0" />
+      <PackageReference Include="TimeZoneConverter" Version="5.0.0" />
     </ItemGroup>
 
 </Project>
