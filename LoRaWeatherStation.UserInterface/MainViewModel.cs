@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Reactive.Disposables;
 using System.Text;
 using LoRaWeatherStation.UserInterface.Configuration;

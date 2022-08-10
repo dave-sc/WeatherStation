@@ -10,7 +10,6 @@ using Avalonia.Visuals.Media.Imaging;
 using OxyPlot;
 using OxyPlot.Avalonia;
 using HorizontalAlignment = Avalonia.Layout.HorizontalAlignment;
-using PlotLength = LoRaWeatherStation.UserInterface.OxyPlotExtensions.PlotLength;
 using VerticalAlignment = Avalonia.Layout.VerticalAlignment;
 
 namespace LoRaWeatherStation.UserInterface.OxyPlotExtensions

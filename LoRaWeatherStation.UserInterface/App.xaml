@@ -3,7 +3,6 @@
              xmlns:local="clr-namespace:LoRaWeatherStation.UserInterface"
              xmlns:controls="clr-namespace:LoRaWeatherStation.UserInterface.Controls"
              xmlns:dashboard="clr-namespace:LoRaWeatherStation.UserInterface.Dashboard"
-             xmlns:avalonia="clr-namespace:Avalonia;assembly=Avalonia.Styling"
              x:Class="LoRaWeatherStation.UserInterface.App">
     <Application.DataTemplates>
         <local:ViewLocator/>
