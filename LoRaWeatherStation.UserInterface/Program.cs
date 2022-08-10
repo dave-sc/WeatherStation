@@ -56,7 +56,7 @@ namespace LoRaWeatherStation.UserInterface
             
             return AppBuilder.Configure<App>()
                 .UsePlatformDetect()
-                .LogToDebug()
+                .LogToTrace()
                 .UseReactiveUI();
         }
 
