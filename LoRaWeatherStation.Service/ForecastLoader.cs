@@ -158,7 +158,7 @@ namespace LoRaWeatherStation.Service
                 .Where(f => f.Location == location)
                 .Where(f => f.Time >= forecastStartTime)
                 .ToArrayAsync(cancellationToken);
-            dbContext.RemoveRange(outdatedForecast);
+            dbContext.Forecasts.RemoveRange(outdatedForecast);
             await dbContext.Forecasts.AddRangeAsync(forecast);
 
             cancellationToken.ThrowIfCancellationRequested();
