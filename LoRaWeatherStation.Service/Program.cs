@@ -13,6 +13,9 @@ namespace LoRaWeatherStation.Service
     {
         public static void Main(string[] args)
         {
+            // https://stackoverflow.com/questions/69961449/net6-and-datetime-problem-cannot-write-datetime-with-kind-utc-to-postgresql-ty
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+            
             var host = CreateHostBuilder(args).Build();
             
             using (var serviceScope = host.Services.CreateScope())

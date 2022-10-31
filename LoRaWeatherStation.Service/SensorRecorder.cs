@@ -78,7 +78,7 @@ namespace LoRaWeatherStation.Service
             var record = new SensorRecord()
             {
                 Sensor = sensor, 
-                RecordTime = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, 0), 
+                RecordTime = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, 0, DateTimeKind.Utc), 
                 Temperature = temperature, 
                 Humidity = humidity,
                 Pressure = pressure,
