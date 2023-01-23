@@ -164,6 +164,8 @@ namespace LoRaWeatherStation.Service
             cancellationToken.ThrowIfCancellationRequested();
             await dbContext.SaveChangesAsync(cancellationToken);
             _logger.LogInformation("Fetched {new} new and deleted {old} old forecast data points for location '{location}'", forecast.Length, outdatedForecast.Length, location.Name);
+            foreach (var item in forecast)
+                _logger.LogTrace("{location} @ {time}: {temp} °C, {rain} mm/m², {pressure} hPa, {wind} mm/s, {weather}", location.Name, item.Time.ToString("yyyy-MM-dd HH:mm:ss zzz"), item.Temperature.ToString("F2"), item.Precipitation.ToString("F2"), (item.Pressure / 100d).ToString("F2"), item.WindSpeed.ToString("F2"), item.Weather);
         }
 
         public async Task StopAsync(CancellationToken cancellationToken)
